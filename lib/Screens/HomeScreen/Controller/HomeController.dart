@@ -12,6 +12,7 @@ class HomeController extends GetxController
   RxMap NoteData = {}.obs;
   RxInt status = 0.obs;
   RxInt CompletedTask = 0.obs;
+  GlobalKey<FormState> key = GlobalKey<FormState>();
 
 
 

@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:notes_with_firebase/Screens/AddNotesScreen/View/AddNotesPage.dart';
 import 'package:notes_with_firebase/Screens/HomeScreen/Controller/HomeController.dart';
-import 'package:notes_with_firebase/Utils/AnimationRoute.dart';
 import 'package:notes_with_firebase/Utils/FirebaseHelper/FirebaseHelper.dart';
 import 'package:notes_with_firebase/Utils/ToastMessage.dart';
 import 'package:sizer/sizer.dart';
@@ -169,6 +169,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Expanded(
                           child: ListView.builder(
+                            physics: const BouncingScrollPhysics(),
                             itemCount: homeController.NotesList.length,
                             itemBuilder: (context, index) {
                               return Container(
@@ -219,7 +220,7 @@ class _HomePageState extends State<HomePage> {
                                           homeController.status.value = 1;
                                           homeController.NoteData.value = homeController.NotesList[index];
                                           homeController.txtUpdateNotes = TextEditingController(text: homeController.NoteData['notes']['note']);
-                                          Get.toNamed('AddNotes');
+                                          Get.to(AddNotesPage(),transition: Transition.downToUp,duration: Duration(milliseconds: 500));
                                         },
                                         icon: Icon(Icons.edit,
                                             color: Colors.grey,
@@ -245,7 +246,7 @@ class _HomePageState extends State<HomePage> {
                                                           Get.back();
                                                         },
                                                         style: ElevatedButton.styleFrom(backgroundColor: Colors.greenAccent),
-                                                        child: Text("Cancel",style: TextStyle(color: Colors.white,),),
+                                                        child: const Text("Cancel",style: TextStyle(color: Colors.white,),),
                                                       ),
                                                       SizedBox(width: Get.width/6,),
                                                       ElevatedButton(
@@ -255,7 +256,7 @@ class _HomePageState extends State<HomePage> {
                                                           Get.back();
                                                         },
                                                         style: ElevatedButton.styleFrom(backgroundColor: Colors.red,),
-                                                        child: Text("Ok",style: TextStyle(color: Colors.white),),
+                                                        child: const Text("Ok",style: TextStyle(color: Colors.white),),
                                                       ),
                                                     ],
                                                   )
@@ -325,8 +326,9 @@ class _HomePageState extends State<HomePage> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.greenAccent,
           onPressed: () {
+            homeController.txtNotes.clear();
             homeController.status.value = 0;
-           Navigator.of(context).push(animation());
+          Get.to(const AddNotesPage(),transition: Transition.downToUp,duration: const Duration(milliseconds: 500));
           },
           child: Icon(
             Icons.add,
