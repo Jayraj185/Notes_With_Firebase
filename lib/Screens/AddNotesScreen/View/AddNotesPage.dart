@@ -84,7 +84,7 @@ class _AddNotesPageState extends State<AddNotesPage> {
                         {
                           FirebaseHelper.firebaseHelper.UpdateNotesData(
                             id: homeController.NoteData['id'],
-                            note: homeController.NoteData['notes']['note'],
+                            note: homeController.txtUpdateNotes.text,
                             status: homeController.NoteData['notes']['status'],
                           );
                           ToastMessage("Task Updated", Colors.blueAccent);
