@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:notes_with_firebase/Screens/HomeScreen/Controller/HomeController.dart';
+import 'package:notes_with_firebase/Utils/AnimationRoute.dart';
 import 'package:notes_with_firebase/Utils/FirebaseHelper/FirebaseHelper.dart';
 import 'package:notes_with_firebase/Utils/ToastMessage.dart';
 import 'package:sizer/sizer.dart';
@@ -227,29 +228,39 @@ class _HomePageState extends State<HomePage> {
                                       IconButton(
                                         onPressed: () {
                                           Get.defaultDialog(
-                                            title: "Are you sure delete this Task ?",
-                                            content: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                              children: [
-                                                ElevatedButton(
-                                                  onPressed: (){
-                                                    Get.back();
-                                                  },
-                                                  style: ElevatedButton.styleFrom(backgroundColor: Colors.greenAccent),
-                                                  child: Text("Cancel",style: TextStyle(color: Colors.white,),),
-                                                ),
-                                                SizedBox(width: Get.width/6,),
-                                                ElevatedButton(
-                                                  onPressed: (){
-                                                    FirebaseHelper.firebaseHelper.DeleteNotesData(id: homeController.NotesList[index]['id']);
-                                                    ToastMessage("Task Deleted", Colors.red);
-                                                    Get.back();
-                                                  },
-                                                  style: ElevatedButton.styleFrom(backgroundColor: Colors.red,),
-                                                  child: Text("Ok",style: TextStyle(color: Colors.white),),
-                                                ),
-                                              ],
+                                            title: "",
+                                            content: Container(
+                                              height: Get.height/6,
+                                              width: Get.height/3,
+                                              child: Column(
+                                                children: [
+                                                  Text("Are you sure delete this Task ?",style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 15.sp),),
+                                                  SizedBox(height: Get.width/9,),
+                                                  Row(
+                                                    mainAxisSize: MainAxisSize.min,
+                                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                    children: [
+                                                      ElevatedButton(
+                                                        onPressed: (){
+                                                          Get.back();
+                                                        },
+                                                        style: ElevatedButton.styleFrom(backgroundColor: Colors.greenAccent),
+                                                        child: Text("Cancel",style: TextStyle(color: Colors.white,),),
+                                                      ),
+                                                      SizedBox(width: Get.width/6,),
+                                                      ElevatedButton(
+                                                        onPressed: (){
+                                                          FirebaseHelper.firebaseHelper.DeleteNotesData(id: homeController.NotesList[index]['id']);
+                                                          ToastMessage("Task Deleted", Colors.red);
+                                                          Get.back();
+                                                        },
+                                                        style: ElevatedButton.styleFrom(backgroundColor: Colors.red,),
+                                                        child: Text("Ok",style: TextStyle(color: Colors.white),),
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
                                             )
                                           );
                                         },
@@ -315,7 +326,7 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.greenAccent,
           onPressed: () {
             homeController.status.value = 0;
-            Get.toNamed('AddNotes');
+           Navigator.of(context).push(animation());
           },
           child: Icon(
             Icons.add,
@@ -327,3 +338,5 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+

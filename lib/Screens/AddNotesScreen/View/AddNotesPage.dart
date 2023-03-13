@@ -36,7 +36,7 @@ class _AddNotesPageState extends State<AddNotesPage> {
                 controller: homeController.status.value == 0 ? homeController.txtNotes : homeController.txtUpdateNotes,
                 cursorColor: Colors.greenAccent,
                 style: TextStyle(
-                  fontSize: 15.sp
+                    fontSize: 15.sp
                 ),
                 decoration: InputDecoration(
                   hintText: "${homeController.status.value == 0 ? "Write" : "Update"} Note",
@@ -44,8 +44,8 @@ class _AddNotesPageState extends State<AddNotesPage> {
                   prefixIconColor: Colors.greenAccent,
                   hintStyle: TextStyle(fontSize: 15.sp),
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(6),
-                    borderSide: BorderSide(color: Colors.grey)
+                      borderRadius: BorderRadius.circular(6),
+                      borderSide: BorderSide(color: Colors.grey)
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(6),
@@ -65,8 +65,8 @@ class _AddNotesPageState extends State<AddNotesPage> {
                       height: Get.height/15,
                       width: Get.width/2.8,
                       decoration: BoxDecoration(
-                        color: Colors.greenAccent,
-                        borderRadius: BorderRadius.circular(15)
+                          color: Colors.greenAccent,
+                          borderRadius: BorderRadius.circular(15)
                       ),
                       alignment: Alignment.center,
                       child: Text("Cancel",style: TextStyle(color: Colors.white,fontSize: 15.sp,fontWeight: FontWeight.bold),),
@@ -76,27 +76,27 @@ class _AddNotesPageState extends State<AddNotesPage> {
                     onTap: (){
 
                       if(homeController.status.value == 0)
-                        {
-                          FirebaseHelper.firebaseHelper.InsertNotesData(note: homeController.txtNotes.text);
-                          ToastMessage("Task Created", Colors.green);
-                        }
+                      {
+                        FirebaseHelper.firebaseHelper.InsertNotesData(note: homeController.txtNotes.text);
+                        ToastMessage("Task Created", Colors.green);
+                      }
                       else
-                        {
-                          FirebaseHelper.firebaseHelper.UpdateNotesData(
-                            id: homeController.NoteData['id'],
-                            note: homeController.txtUpdateNotes.text,
-                            status: homeController.NoteData['notes']['status'],
-                          );
-                          ToastMessage("Task Updated", Colors.blueAccent);
-                        }
+                      {
+                        FirebaseHelper.firebaseHelper.UpdateNotesData(
+                          id: homeController.NoteData['id'],
+                          note: homeController.txtUpdateNotes.text,
+                          status: homeController.NoteData['notes']['status'],
+                        );
+                        ToastMessage("Task Updated", Colors.blueAccent);
+                      }
                       Get.back();
                     },
                     child: Container(
                       height: Get.height/15,
                       width: Get.width/2.8,
                       decoration: BoxDecoration(
-                        color: Colors.greenAccent,
-                        borderRadius: BorderRadius.circular(15)
+                          color: Colors.greenAccent,
+                          borderRadius: BorderRadius.circular(15)
                       ),
                       alignment: Alignment.center,
                       child: Text("${homeController.status.value == 0 ? "Create" : "Update"}",style: TextStyle(color: Colors.white,fontSize: 15.sp,fontWeight: FontWeight.bold),),
@@ -111,3 +111,4 @@ class _AddNotesPageState extends State<AddNotesPage> {
     );
   }
 }
+
