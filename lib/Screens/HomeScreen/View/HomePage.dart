@@ -278,7 +278,7 @@ class _HomePageState extends State<HomePage> {
                     );
             } else {
               return ListView.builder(
-                itemCount: 15,
+                itemCount: 3,
                 itemBuilder: (context, index) {
                   return Container(
                     height: Get.height / 12,
